@@ -7,6 +7,7 @@ public class AimOperator : MonoBehaviour
 {
     // Start is called before the first frame update
     const float height = 6.5f;
+    const float aimSize = 4 / 2;
     float width = 11f;
     const float sensitivity = 0.05f;
     float magnification;

@@ -42,19 +42,21 @@ public class BlockCreator : MonoBehaviour
 
         if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && !IsCoolTime)
         {
-            if (clone_prehub != null)
+            if (clone != null)
             {
                 
                 blockNum++;
                 string newName = "block" + blockNum.ToString();
                 clone.name = newName;
-                clone.transform.position -= new Vector3(0, 2, 0); //次のクローンと衝突しないための生成位置調整
+                //clone.transform.position -= new Vector3(0, 2, 0); //次のクローンと衝突しないための生成位置調整
                 clone.AddComponent<Rigidbody2D>();
+                PrehubOperator prehubOperator = clone.GetComponent<PrehubOperator>();
+                prehubOperator.AddCollider(); //プレハブ下の各ブロックに当たり判定を追加
                 //clone.AddComponent<BoxCollider2D>();
             }
             else
             {
-                Debug.Log("clone_prehub　が　null　です");
+                Debug.Log("clone　が　null　です");
             }
             IsCoolTime = true;
             
@@ -64,7 +66,7 @@ public class BlockCreator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             clone.transform.Rotate( new Vector3(0,0,90));
-            Debug.Log("Rotate");
+            //Debug.Log("Rotate");
         }
     }
     void CoolTime_Reset()

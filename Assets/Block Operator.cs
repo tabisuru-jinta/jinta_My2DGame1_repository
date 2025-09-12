@@ -7,11 +7,17 @@ public class BlockOperator : MonoBehaviour
 {
     // Start is called before the first frame update
     private const int Delete_height = -3;
-    bool heightCheck = false;
-    
+    public bool heightCheck = false;
+    GameObject oo;
+    GameOperator go;
+    SpriteRenderer renderer;
+
+
     void Start()
     {
-        
+        oo = GameObject.Find("OperatorObject");
+        go = oo.GetComponent<GameOperator>();
+        renderer = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -22,23 +28,29 @@ public class BlockOperator : MonoBehaviour
             Debug.Log("—Ž‚¿‚½");
             Destroy(this);
         }
+        //if (heightCheck)
+        //{
+        //    if (go.highestBlock < transform.position.y)
+        //    {
+        //        go.highestBlock = transform.position.y;
+        //        heightCheck = true;
+        //        if (renderer != null) 
+        //        {
+        //            renderer.color = Color.red;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (renderer != null)
+        //        {
+        //            renderer.color = Color.white;
+        //        }
+        //    }
+        //}
+        
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!heightCheck)
-        {
-            GameObject oo = GameObject.Find("OperatorObject");
-            var go = oo.GetComponent<GameOperator>();
-
-            if(go.highestBlock < transform.position.y)
-            {
-                go.highestBlock = transform.position.y;
-                heightCheck = true;
-            }
-            if(go.outestBlock < Mathf.Abs(transform.position.x))
-            {
-                go.outestBlock = Mathf.Abs(transform.position.x);
-            }
-        }
+        heightCheck = true;
     }
 }
