@@ -15,9 +15,11 @@ public class GameOperator : MonoBehaviour
     float cameraZoom = 0.1f;
     public bool IsGameOver = false;
     private int PointDeduction = 0;
+    BlockCreator blockCreator;
     void Start()
     {
         ScoreText.text = "hello Score";
+        blockCreator = this.GetComponent<BlockCreator>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class GameOperator : MonoBehaviour
         ScoreText.text = $"score: {(high - PointDeduction > 0 ? high - PointDeduction:0)}";
 
         if (high < highestBlock) high = (int)highestBlock;
+        if (Camera.main.transform.position.y >= (float)(high-0.5)) blockCreator.IsOk = true;
         Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, new Vector3(0, high, -10), Time.deltaTime * cameraSpeed);
         if(highestBlock < Camera.main.transform.position.y - ScreenSize && !IsGameOver)//Å‚à‚‚¢ƒuƒƒbƒN‚ª‰æ–Ê‚©‚çŒ©‚¦‚È‚¢‚Ù‚Ç•ö‚ê‚½‚çGO
         {

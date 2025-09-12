@@ -12,7 +12,8 @@ public class BlockCreator : MonoBehaviour
     private GameObject aim;
     private GameObject blockBox;
     float coolTime = 0.8f;
-    bool IsCoolTime;
+    bool IsCoolTime = false;
+    public bool IsOk = true;
     public int blockNum = 0;
     const int prehubNum = 4;
     GameObject clone,next_clone;
@@ -40,7 +41,7 @@ public class BlockCreator : MonoBehaviour
         if(!IsCoolTime)clone.transform.position = aim.transform.position ;
         next_clone.transform.position = new Vector2(Camera.main.transform.position.x-15, Camera.main.transform.position.y); //次のブロックの掲示
 
-        if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && !IsCoolTime)
+        if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && !IsCoolTime && IsOk)
         {
             if (clone != null)
             {
@@ -52,13 +53,13 @@ public class BlockCreator : MonoBehaviour
                 clone.AddComponent<Rigidbody2D>();
                 PrehubOperator prehubOperator = clone.GetComponent<PrehubOperator>();
                 prehubOperator.AddCollider(); //プレハブ下の各ブロックに当たり判定を追加
-                //clone.AddComponent<BoxCollider2D>();
             }
             else
             {
                 Debug.Log("clone　が　null　です");
             }
             IsCoolTime = true;
+            IsOk = false;
             
             //next_prehub.transform.position = next_prehub_position;
             Invoke("CoolTime_Reset", coolTime);

@@ -1486,6 +1486,7 @@ MonoBehaviour:
   prehub_T: {fileID: 8822982105734486031, guid: e69a0bce2b5901349a4e57f7aa053d6b, type: 3}
   prehub_O: {fileID: 3447281278295935425, guid: e50f962672a737141b74798c48b6d631, type: 3}
   prehub_X: {fileID: 3790320669501233457, guid: f9d91bb8e0723c84791162afd6d8c707, type: 3}
+  IsOk: 0
   blockNum: 0
 --- !u!114 &1641053669
 MonoBehaviour:
@@ -1514,7 +1515,7 @@ MonoBehaviour:
   ScoreText: {fileID: 1691965302}
   highestBlock: 0
   outestBlock: 0
-  GameOver: 0
+  IsGameOver: 0
 --- !u!114 &1641053671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,7 +1745,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1641053671}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
         m_MethodName: ButtonClick
         m_Mode: 1
